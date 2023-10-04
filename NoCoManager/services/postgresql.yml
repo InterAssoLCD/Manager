@@ -1,0 +1,6 @@
+service_name: "PostgreSQL"
+service_filename: "postgresql.yml"
+service_commands:
+  start: "sudo systemctl start postgres"
+  stop: "sudo systemctl stop postgres"
+  restart: "sudo systemctl restart postgres"

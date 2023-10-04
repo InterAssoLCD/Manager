@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bulma/bulma.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons/iconoir.css') }}">
+    <title>NoCo Manager</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <section class="section main-content">
+        <div class="container">
+            <div class="level">
+                <div class="level-left">
+                    <h1 class="title is-1">NoCo Manager</h1>
+                </div>
+                <div class="level-right">
+                    <button class="button is-info mx-2" onclick="location.reload();">
+                        <span class="icon">
+                            <i class="iconoir-refresh"></i>
+                        </span>
+                        <span>Rafraîchir</span>
+                    </button>
+                    <a href="{{ url_for('logout') }}" class="button is-danger">
+                        <span class="icon">
+                            <i class="iconoir-log-out"></i>
+                        </span>
+                        <span>Déconnexion</span>
+                    </a>
+                </div>
+            </div>
+            <div class="tile is-ancestor is-flex-wrap-wrap">
+                {% for service in services %}
+                <div class="tile is-parent is-4">
+                    <article class="tile is-child box">
+                        <p class="title">{{ service.service_name }}</p>
+                        <form method="POST" action="{{ url_for('manage_service') }}">
+                            <input type="hidden" name="service_path" value="{{ service.service_filename }}">
+                            <button type="submit" name="action" value="start" class="button is-success is-light">
+                                <span class="icon">
+                                    <i class="iconoir-play"></i>
+                                </span>
+                                <span>Start</span>
+                            </button>
+                            <button type="submit" name="action" value="stop" class="button is-warning is-light">
+                                <span class="icon">
+                                    <i class="iconoir-cancel"></i>
+                                </span>
+                                <span>Stop</span>
+                            </button>
+                            <button type="submit" name="action" value="restart" class="button is-info is-light">
+                                <span class="icon">
+                                    <i class="iconoir-refresh"></i>
+                                </span>
+                                <span>Restart</span>
+                            </button>
+                        </form>
+                    </article>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                Créé par Iziram pour <a href="https://github.com/InterAssoLCD/" target="_blank"
+                    rel="noopener noreferrer">LCD</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

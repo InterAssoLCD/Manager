@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bulma/bulma.min.css') }}">
+    <title>Login - NoCo Manager</title>
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Login</h1>
+            <form method="POST" action="{{ url_for('login') }}">
+                {{ form.hidden_tag() }}
+                <div class="field">
+                    <label class="label" for="username">Username</label>
+                    <div class="control">
+                        {{ form.username(class="input") }}
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="password">Password</label>
+                    <div class="control">
+                        {{ form.password(class="input") }}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        {{ form.submit(class="button is-primary") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>
