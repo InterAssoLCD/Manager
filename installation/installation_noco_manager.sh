@@ -54,6 +54,11 @@ ssid=NoCo
 wpa_passphrase=$password
 EOF
 
+echo 'DAEMON_CONF="/etc/hostapd/hostapd.conf"' >> /etc/default/hostapd
+
+systemctl unmask hostapd.service
+systemctl enable hostapt.service
+
 # => FIN
 echo "== Fin de l'Installation=="
 echo "============"
