@@ -1,24 +1,29 @@
 #!/bin/bash
 
 # Mise à jour du raspberry
+echo "== Mise à jour=="
+
 apt update
 apt full-upgrade -y
 
 # Installations des services
 
 # => PostgreSQL
+echo "== Installation de POSTGRESQL=="
 apt install postgresql -y
-su postgres
-createuser pi -P --interactive
-psql -c "CREATE DATABASE pi;"
-exit
+echo "Création de l'utilisateur PI dans PostgreSQL"
+sudo -u postgres createuser pi -P --interactive
+sudo -u postgres psql -c "CREATE DATABASE pi;"
+
+
 
 # => Nginx
+echo "== Installation de NGINX=="
 apt install nginx -y
 # rm /var/www/html/index.nginx-debian.html
 
 # => DNSMasq
-
+echo "== Installation de DNSMasq =="
 apt install dnsmasq -y
 systemctl stop dnsmasq
 cp /etc/dhcpcd.conf /etc/original.dhcpcd.conf
@@ -27,7 +32,7 @@ mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
 printf "interface wlan0\ndhcp-range=192.168.0.2,192.168.253.254,255.255.0.0,12h\n" | tee /etc/dhcpcd.conf
 
 # => HostAPd
-
+echo "== Installation de HostAPd =="
 apt install hostapd -y
 systemctl stop hostapd
 
@@ -50,7 +55,7 @@ wpa_passphrase=$password
 EOF
 
 # => FIN
-
+echo "== Fin de l'Installation=="
 echo "============"
 echo "SSID : NoCo"
 echo "PASSWORD : $password"
