@@ -19,3 +19,11 @@ SQLAlchemy==2.0.21
 typing_extensions==4.8.0
 Werkzeug==2.3.0
 WTForms==3.0.1
+cffi==1.15.1
+cryptography==41.0.4
+Pillow==10.0.1
+psycopg2-binary==2.9.9
+pycparser==2.21
+pyOpenSSL==23.2.0
+pypng==0.20220715.0
+qrcode==7.4.2

@@ -36,7 +36,7 @@
                 <div class="tile is-parent is-4">
                     <article class="tile is-child box">
                         <p class="title">{{ service.service_name }}</p>
-                        <form method="POST" action="{{ url_for('manage_service') }}">
+                        <form method="POST" action="{{ url_for('admin.manage_service') }}">
                             <input type="hidden" name="service_path" value="{{ service.service_filename }}">
                             <button type="submit" name="action" value="start" class="button is-success is-light">
                                 <span class="icon">

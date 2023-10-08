@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCD - Ticketer</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='bulma/bulma.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='sweet_alert/sweetalert2.min.css')}}">
+    <script src="{{url_for('static', filename='sweet_alert/sweetalert2.all.min.js')}}"></script>
+
+</head>
+
+<body>
+
+    <section class="container">
+
+        <h1 class="is-size-1 has-text-centered">LCD - Ticketer</h1>
+        <button class="button" onclick="creer()">Créer</button>
+        <div id="video-container" class="container">
+            <video id="qr-video"></video>
+        </div>
+
+        <div class="container" id="infos">
+
+        </div>
+
+    </section>
+
+    <script src="{{url_for('static', filename='qrcode/qr-scanner.umd.min.js')}}"></script>
+    <script type="module" src="{{url_for('static', filename='custom/ticketer.js')}}"></script>
+
+    <style>
+        #video-container {
+            width: 75%;
+        }
+    </style>
+
+    <script>
+        const creer = async () => {
+            const rawResponse = await fetch('api/create', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: "g@p.fr", nom: "grosse", prenom: "pute", "anniversaire": "2003-02-10" })
+            });
+            const content = await rawResponse.text()
+
+            console.log(content);
+        }
+    </script>
+
+</body>
+
+</html>

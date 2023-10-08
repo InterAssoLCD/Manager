@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoCo Manager</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='bulma/bulma.min.css')}}">
+</head>
+
+<body>
+
+    <section class="container">
+
+        <h1 class="is-size-1 has-text-centered">NoCo Manager</h1>
+        <div class="container" id="infos">
+            <ul class="container">
+                <li><a class="button is-primary is-light" href="/admin/">Admin Dashboard</a></li>
+                {% for key, s in services.items() %}
+                {% if s.enabled %}
+                <li><a class="button is-primary is-light" href="{{ url_for(s.path) }}">{{ s.title }}</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <style>
+            li {
+                margin: 2% 0;
+            }
+        </style>
+
+    </section>
+</body>
+
+</html>
